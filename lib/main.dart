@@ -1,20 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'domain/models.dart';
 import 'state/theme_controller.dart';
 import 'design/fv_theme.dart';
+import 'screens/mode_selector.dart';
+import 'screens/home.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
+  final modeString = prefs.getString('app_mode');
+  
+  AppMode? initialMode;
+  if (modeString != null) {
+    initialMode = AppMode.values.firstWhere(
+      (e) => e.name == modeString,
+      orElse: () => AppMode.neurodivergent,
+    );
+  }
+
   runApp(
     ChangeNotifierProvider(
-      create: (_) => ThemeController(),
-      child: const FullVolumeApp(),
+      create: (_) {
+        final controller = ThemeController();
+        if (initialMode != null) {
+          controller.setMode(initialMode);
+        }
+        return controller;
+      },
+      child: FullVolumeApp(hasInitialMode: initialMode != null),
     ),
   );
 }
 
 class FullVolumeApp extends StatelessWidget {
-  const FullVolumeApp({super.key});
+  final bool hasInitialMode;
+  const FullVolumeApp({super.key, required this.hasInitialMode});
 
   @override
   Widget build(BuildContext context) {
@@ -22,40 +44,7 @@ class FullVolumeApp extends StatelessWidget {
     return MaterialApp(
       title: 'Full Volume Stories',
       theme: buildTheme(themeController.mode),
-      home: const DemoScreen(), // Throwaway demo harness
-    );
-  }
-}
-
-class DemoScreen extends StatelessWidget {
-  const DemoScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final themeController = context.watch<ThemeController>();
-    final isModeA = themeController.mode == AppMode.neurodivergent;
-    
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Design Tokens Demo'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Current Mode: ${isModeA ? "Neurodivergent (Calm)" : "General (Warm)"}'),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                themeController.setMode(
-                  isModeA ? AppMode.general : AppMode.neurodivergent,
-                );
-              },
-              child: const Text('Toggle Theme Mode'),
-            ),
-          ],
-        ),
-      ),
+      home: hasInitialMode ? const HomeScreen() : const ModeSelectorScreen(),
     );
   }
 }
