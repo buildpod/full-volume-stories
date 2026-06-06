@@ -4,7 +4,9 @@ import '../domain/models.dart';
 import '../state/theme_controller.dart';
 import '../design/tokens.dart';
 import '../widgets/parent_gate.dart';
+import '../services/pack_loader.dart';
 import 'settings.dart';
+import 'story_player.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -64,38 +66,53 @@ class HomeScreen extends StatelessWidget {
           ),
           // Packs list
           Expanded(
-            child: Center(
-              child: Container(
-                padding: const EdgeInsets.all(FVTokens.l),
-                decoration: BoxDecoration(
-                  color: FVTokens.surfaceAlt,
-                  borderRadius: BorderRadius.circular(FVTokens.radiusCard),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.auto_stories,
-                      size: 48,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    const SizedBox(height: FVTokens.m),
-                    Text(
-                      'Coming Soon',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: FVTokens.ink,
+            child: FutureBuilder<StoryPack>(
+              // Temporary hardcoded test approval map until cast_manifest.json exists in FV-asset task
+              future: loadPack('assets/packs/sample_neuro.json', const {'boy': true}),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}', style: const TextStyle(color: FVTokens.ink)));
+                }
+                if (!snapshot.hasData) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+
+                final pack = snapshot.data!;
+                return ListView.builder(
+                  padding: const EdgeInsets.all(FVTokens.m),
+                  itemCount: pack.stories.length,
+                  itemBuilder: (context, index) {
+                    final story = pack.stories[index];
+                    return Card(
+                      color: FVTokens.surfaceAlt,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(FVTokens.radiusCard),
                       ),
-                    ),
-                    const SizedBox(height: FVTokens.s),
-                    Text(
-                      'Story packs will appear here.',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: FVTokens.ink,
+                      child: ListTile(
+                        contentPadding: const EdgeInsets.all(FVTokens.m),
+                        leading: Icon(
+                          Icons.menu_book,
+                          size: 48,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        title: Text(story.title['en'] ?? 'Story'),
+                        subtitle: const Text('Tap to read'),
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => StoryPlayerScreen(
+                                story: story,
+                                // Temporary hardcoded test approval map
+                                approvedCast: const {'boy': true},
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                    ),
-                  ],
-                ),
-              ),
+                    );
+                  },
+                );
+              },
             ),
           ),
         ],
