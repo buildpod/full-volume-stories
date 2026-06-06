@@ -1,15 +1,140 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../domain/models.dart';
+import '../domain/voice_match.dart';
 import '../state/theme_controller.dart';
 import '../design/tokens.dart';
 import '../widgets/parent_gate.dart';
 import '../services/pack_loader.dart';
+import '../services/voice_service.dart';
 import 'settings.dart';
 import 'story_player.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  Future<StoryPack>? _packFuture;
+  final VoiceService _voiceService = VoiceService();
+
+  @override
+  void initState() {
+    super.initState();
+    // Temporary hardcoded test approval map until cast_manifest.json exists
+    _packFuture = loadPack('assets/packs/sample_neuro.json', const {'boy': true});
+    _voiceService.initialize();
+    _voiceService.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _voiceService.dispose();
+    super.dispose();
+  }
+
+  Future<void> _handleMicTap() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (!mounted) return;
+    
+    bool consent = prefs.getBool('mic_consent_granted') ?? false;
+
+    if (!consent) {
+      final passed = await showParentGate(context);
+      if (!mounted || !passed) return;
+
+      final result = await showDialog<bool>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          backgroundColor: FVTokens.surface,
+          title: const Text('Enable Voice Search?', style: TextStyle(color: FVTokens.ink)),
+          content: const Text(
+            'The microphone listens to find a story. Speech is sent to your device\'s speech recognizer to convert to text. No audio is ever saved or shared.',
+            style: TextStyle(color: FVTokens.ink),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(ctx).pop(false),
+              child: const Text('No Thanks', style: TextStyle(color: FVTokens.ink)),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(ctx).pop(true),
+              child: const Text('Allow', style: TextStyle(color: FVTokens.ink)),
+            ),
+          ],
+        ),
+      );
+
+      if (result == true) {
+        await prefs.setBool('mic_consent_granted', true);
+      } else {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Voice is off. Enable in settings or tap mic again to allow.')),
+        );
+        return;
+      }
+    }
+
+    if (_voiceService.isListening) {
+      await _voiceService.stopListening();
+      return;
+    }
+
+    final pack = await _packFuture;
+    if (!mounted || pack == null) return;
+
+    await _voiceService.startListening(
+      onResult: (transcript) {
+        if (!mounted) return;
+        final match = matchStoryByVoice(transcript, pack.stories);
+        if (match != null) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => StoryPlayerScreen(
+                story: match,
+                approvedCast: const {'boy': true},
+              ),
+            ),
+          );
+        } else {
+          showDialog(
+            context: context,
+            builder: (ctx) => AlertDialog(
+              backgroundColor: FVTokens.surface,
+              title: const Text('I didn\'t catch that', style: TextStyle(color: FVTokens.ink)),
+              content: const Text('Try one of these:', style: TextStyle(color: FVTokens.ink)),
+              actions: pack.stories.map((s) => TextButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => StoryPlayerScreen(
+                        story: s,
+                        approvedCast: const {'boy': true},
+                      ),
+                    ),
+                  );
+                },
+                child: Text(s.title['en'] ?? 'Story', style: const TextStyle(color: FVTokens.ink)),
+              )).toList()..add(
+                TextButton(
+                  onPressed: () => Navigator.of(ctx).pop(),
+                  child: const Text('Cancel', style: TextStyle(color: FVTokens.ink)),
+                ),
+              ),
+            ),
+          );
+        }
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +148,11 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () async {
-              final passed = await showParentGate(context);
-              if (passed && context.mounted) {
-                Navigator.of(context).push(
+              final currentContext = context;
+              final passed = await showParentGate(currentContext);
+              if (!currentContext.mounted) return;
+              if (passed) {
+                Navigator.of(currentContext).push(
                   MaterialPageRoute(builder: (_) => const SettingsScreen()),
                 );
               }
@@ -52,14 +179,22 @@ class HomeScreen extends StatelessWidget {
                     // Wired to state only, no content
                   },
                 ),
-                IconButton(
-                  icon: const Icon(Icons.mic),
-                  style: IconButton.styleFrom(
-                    minimumSize: const Size(FVTokens.aMinTapTarget, FVTokens.aMinTapTarget),
-                  ),
-                  onPressed: () {
-                    // Visual only
-                  },
+                Row(
+                  children: [
+                    if (_voiceService.isListening)
+                      const Padding(
+                        padding: EdgeInsets.only(right: 8.0),
+                        child: Text('Listening...', style: TextStyle(color: FVTokens.ink, fontStyle: FontStyle.italic)),
+                      ),
+                    IconButton(
+                      icon: Icon(_voiceService.isListening ? Icons.mic_off : Icons.mic),
+                      color: _voiceService.isListening ? Colors.red : null,
+                      style: IconButton.styleFrom(
+                        minimumSize: const Size(FVTokens.aMinTapTarget, FVTokens.aMinTapTarget),
+                      ),
+                      onPressed: _handleMicTap,
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -67,8 +202,7 @@ class HomeScreen extends StatelessWidget {
           // Packs list
           Expanded(
             child: FutureBuilder<StoryPack>(
-              // Temporary hardcoded test approval map until cast_manifest.json exists in FV-asset task
-              future: loadPack('assets/packs/sample_neuro.json', const {'boy': true}),
+              future: _packFuture,
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
                   return Center(child: Text('Error: ${snapshot.error}', style: const TextStyle(color: FVTokens.ink)));
@@ -102,7 +236,6 @@ class HomeScreen extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (_) => StoryPlayerScreen(
                                 story: story,
-                                // Temporary hardcoded test approval map
                                 approvedCast: const {'boy': true},
                               ),
                             ),
