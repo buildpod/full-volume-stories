@@ -1,0 +1,30 @@
+{
+  "id": "pack_001",
+  "mode": "neurodivergent",
+  "sku": "sku_001",
+  "stories": [
+    {
+      "id": "story_001",
+      "mode": "neurodivergent",
+      "template": "firstThen",
+      "title": {
+        "en": "First Wash Hands, Then Eat"
+      },
+      "pages": [
+        {
+          "text": "First, we wash our hands.",
+          "imageAsset": "wash_hands.png",
+          "copingCardId": null
+        },
+        {
+          "text": "Then, we can eat dinner.",
+          "imageAsset": "eat_dinner.png",
+          "copingCardId": null
+        }
+      ],
+      "voiceKeywords": ["wash", "eat"],
+      "castIds": ["boy"],
+      "lowArousal": true
+    }
+  ]
+}
