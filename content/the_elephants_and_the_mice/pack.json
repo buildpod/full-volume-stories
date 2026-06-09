@@ -1,0 +1,61 @@
+{
+  "id": "pack_eltmice",
+  "mode": "general",
+  "sku": "sku_eltmice_001",
+  "stories": [
+    {
+      "id": "story_eltmice_001",
+      "mode": "general",
+      "template": "narrative",
+      "title": {
+        "en": "The Elephants and the Mice"
+      },
+      "learningGoal": "Kindness and respect for others — even the smallest friend — and how helping each other makes everyone stronger.",
+      "pages": [
+        {
+          "text": "By an old stone temple lived a colony of happy little mice.",
+          "imageAsset": "assets/packs/images/ele_01_mouse_home.png",
+          "copingCardId": null
+        },
+        {
+          "text": "One day, a great herd of elephants came walking to the lake.",
+          "imageAsset": "assets/packs/images/ele_02_herd_passes.png",
+          "copingCardId": null
+        },
+        {
+          "text": "Brave little Chiku squeaked, 'Please, kind friends, mind our tiny homes!'",
+          "imageAsset": "assets/packs/images/ele_03_chiku_asks.png",
+          "copingCardId": null
+        },
+        {
+          "text": "'Of course,' smiled Bula, and led the herd a gentler way.",
+          "imageAsset": "assets/packs/images/ele_04_bula_agrees.png",
+          "copingCardId": null
+        },
+        {
+          "text": "'If ever you need us, we will help you!' promised the little mice.",
+          "imageAsset": "assets/packs/images/ele_05_grateful_promise.png",
+          "copingCardId": null
+        },
+        {
+          "text": "Many days later, big ropes from hunters caught the elephants near the lake.",
+          "imageAsset": "assets/packs/images/ele_06_elephants_caught.png",
+          "copingCardId": null
+        },
+        {
+          "text": "The mice came running! Nibble, nibble, nibble through the ropes.",
+          "imageAsset": "assets/packs/images/ele_07_mice_gnaw.png",
+          "copingCardId": null
+        },
+        {
+          "text": "The ropes fell away. Big and small — friends forever!",
+          "imageAsset": "assets/packs/images/ele_08_free_friends.png",
+          "copingCardId": null
+        }
+      ],
+      "voiceKeywords": ["elephant", "mouse", "mice", "kind", "friends", "help"],
+      "castIds": ["bula", "chiku"],
+      "lowArousal": false
+    }
+  ]
+}
