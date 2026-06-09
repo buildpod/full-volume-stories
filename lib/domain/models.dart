@@ -2,6 +2,29 @@ enum AppMode { neurodivergent, general }
 
 enum StoryTemplate { firstThen, narrative }
 
+/// A reusable coping strategy shown during a story (e.g. a breathing
+/// exercise). Referenced from a page via [StoryPage.copingCardId] and
+/// resolved against [StoryPack.copingCards].
+class CopingCard {
+  final String id;
+  final String title;
+  final List<String> steps;
+
+  const CopingCard({
+    required this.id,
+    required this.title,
+    required this.steps,
+  });
+
+  factory CopingCard.fromJson(Map<String, dynamic> json) {
+    return CopingCard(
+      id: json['id'] as String,
+      title: json['title'] as String,
+      steps: List<String>.from(json['steps'] as List),
+    );
+  }
+}
+
 class StoryPage {
   final String text;
   final String imageAsset;
@@ -32,6 +55,10 @@ class Story {
   final List<String> castIds;
   final bool lowArousal;
 
+  /// Parent-facing description of the skill this story practises. Surfaced in
+  /// the post-story "what your child practised" summary.
+  final String? learningGoal;
+
   const Story({
     required this.id,
     required this.mode,
@@ -41,6 +68,7 @@ class Story {
     required this.voiceKeywords,
     required this.castIds,
     required this.lowArousal,
+    this.learningGoal,
   });
 
   factory Story.fromJson(Map<String, dynamic> json) {
@@ -55,6 +83,7 @@ class Story {
       voiceKeywords: List<String>.from(json['voiceKeywords'] as List),
       castIds: List<String>.from(json['castIds'] as List),
       lowArousal: json['lowArousal'] as bool,
+      learningGoal: json['learningGoal'] as String?,
     );
   }
 }
@@ -65,14 +94,19 @@ class StoryPack {
   final String sku;
   final List<Story> stories;
 
+  /// Coping cards keyed by id, shared across the pack's stories.
+  final Map<String, CopingCard> copingCards;
+
   const StoryPack({
     required this.id,
     required this.mode,
     required this.sku,
     required this.stories,
+    this.copingCards = const {},
   });
 
   factory StoryPack.fromJson(Map<String, dynamic> json) {
+    final cardsJson = json['copingCards'] as Map<String, dynamic>?;
     return StoryPack(
       id: json['id'] as String,
       mode: AppMode.values.byName(json['mode'] as String),
@@ -80,6 +114,10 @@ class StoryPack {
       stories: (json['stories'] as List)
           .map((e) => Story.fromJson(e as Map<String, dynamic>))
           .toList(),
+      copingCards: cardsJson == null
+          ? const {}
+          : cardsJson.map((k, v) =>
+              MapEntry(k, CopingCard.fromJson(v as Map<String, dynamic>))),
     );
   }
 }

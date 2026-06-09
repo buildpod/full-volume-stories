@@ -9,11 +9,13 @@ import '../services/pdf_export.dart';
 class StoryPlayerScreen extends StatefulWidget {
   final Story story;
   final Map<String, bool> approvedCast;
+  final Map<String, CopingCard> copingCards;
 
   StoryPlayerScreen({
     super.key,
     required this.story,
     required this.approvedCast,
+    this.copingCards = const {},
   }) {
     // Safety gate: ensure cast is approved before allowing screen to be built
     validateStoryCast(story, approvedCast);
@@ -76,18 +78,115 @@ class _StoryPlayerScreenState extends State<StoryPlayerScreen> {
 
   void _showCopingCard() {
     final page = widget.story.pages[_currentPageIndex];
-    if (page.copingCardId == null) return;
-    
+    final id = page.copingCardId;
+    if (id == null) return;
+    final card = widget.copingCards[id];
+
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Coping Strategy', style: TextStyle(color: FVTokens.ink)),
-        content: Text('Card ID: ${page.copingCardId}', style: const TextStyle(color: FVTokens.ink)),
         backgroundColor: FVTokens.surface,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(FVTokens.radiusCard),
+        ),
+        title: Text(
+          card?.title ?? 'Coping Strategy',
+          style: const TextStyle(color: FVTokens.ink),
+        ),
+        content: card == null
+            ? const Text('Take a slow breath.', style: TextStyle(color: FVTokens.ink))
+            : Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  for (var i = 0; i < card.steps.length; i++)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: FVTokens.xs),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('${i + 1}.  ',
+                              style: const TextStyle(
+                                  color: FVTokens.ink, fontWeight: FontWeight.bold)),
+                          Expanded(
+                            child: Text(card.steps[i],
+                                style: const TextStyle(color: FVTokens.ink)),
+                          ),
+                        ],
+                      ),
+                    ),
+                ],
+              ),
         actions: [
           TextButton(
+            style: TextButton.styleFrom(
+              minimumSize: const Size(FVTokens.aMinTapTarget, FVTokens.aMinTapTarget),
+            ),
             onPressed: () => Navigator.of(ctx).pop(),
             child: const Text('Close', style: TextStyle(color: FVTokens.ink)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _showPracticeSummary() async {
+    final passed = await showParentGate(context);
+    if (!mounted || !passed) return;
+
+    // Resolve the coping strategies this story actually used.
+    final usedCardTitles = <String>{};
+    for (final page in widget.story.pages) {
+      final card = widget.copingCards[page.copingCardId];
+      if (card != null) usedCardTitles.add(card.title);
+    }
+
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: FVTokens.surface,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(FVTokens.radiusCard),
+        ),
+        title: const Text('What your child practised', style: TextStyle(color: FVTokens.ink)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                const Icon(Icons.check_circle, color: FVTokens.aPrimary),
+                const SizedBox(width: FVTokens.s),
+                Expanded(
+                  child: Text('Completed: ${widget.story.title['en'] ?? 'Story'}',
+                      style: const TextStyle(color: FVTokens.ink)),
+                ),
+              ],
+            ),
+            if (widget.story.learningGoal != null) ...[
+              const SizedBox(height: FVTokens.m),
+              const Text('Skill practised',
+                  style: TextStyle(color: FVTokens.ink, fontWeight: FontWeight.bold)),
+              const SizedBox(height: FVTokens.xs),
+              Text(widget.story.learningGoal!, style: const TextStyle(color: FVTokens.ink)),
+            ],
+            if (usedCardTitles.isNotEmpty) ...[
+              const SizedBox(height: FVTokens.m),
+              const Text('Coping strategies used',
+                  style: TextStyle(color: FVTokens.ink, fontWeight: FontWeight.bold)),
+              const SizedBox(height: FVTokens.xs),
+              ...usedCardTitles.map((t) =>
+                  Text('• $t', style: const TextStyle(color: FVTokens.ink))),
+            ],
+          ],
+        ),
+        actions: [
+          TextButton(
+            style: TextButton.styleFrom(
+              minimumSize: const Size(FVTokens.aMinTapTarget, FVTokens.aMinTapTarget),
+            ),
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: const Text('Done', style: TextStyle(color: FVTokens.ink)),
           ),
         ],
       ),
@@ -229,6 +328,17 @@ class _StoryPlayerScreenState extends State<StoryPlayerScreen> {
                         ]
                       ],
                     ),
+                    if (_currentPageIndex == widget.story.pages.length - 1) ...[
+                      const SizedBox(height: FVTokens.s),
+                      TextButton.icon(
+                        style: TextButton.styleFrom(
+                          minimumSize: const Size(0, FVTokens.aMinTapTarget),
+                        ),
+                        onPressed: _showPracticeSummary,
+                        icon: const Icon(Icons.flag_outlined, color: FVTokens.ink),
+                        label: const Text('Finish', style: TextStyle(color: FVTokens.ink)),
+                      ),
+                    ],
                   ],
                 ),
               ),

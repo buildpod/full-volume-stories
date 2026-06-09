@@ -2,6 +2,18 @@
   "id": "pack_001",
   "mode": "neurodivergent",
   "sku": "sku_001",
+  "copingCards": {
+    "card_breathe": {
+      "id": "card_breathe",
+      "title": "Take a calm breath",
+      "steps": [
+        "Breathe in slowly while I count to four.",
+        "Hold it for a moment.",
+        "Breathe out slowly while I count to four.",
+        "We can do this two more times."
+      ]
+    }
+  },
   "stories": [
     {
       "id": "story_001",
@@ -10,11 +22,12 @@
       "title": {
         "en": "First Wash Hands, Then Eat"
       },
+      "learningGoal": "Following a simple first/then routine, and using a calming breath when waiting feels hard.",
       "pages": [
         {
           "text": "First, we wash our hands.",
           "imageAsset": "wash_hands.png",
-          "copingCardId": null
+          "copingCardId": "card_breathe"
         },
         {
           "text": "Then, we can eat dinner.",

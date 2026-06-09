@@ -62,6 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (_) => StoryPlayerScreen(
           story: story,
           approvedCast: const {'boy': true},
+          copingCards: pack.copingCards,
         ),
       ),
     );
@@ -180,35 +181,20 @@ class _HomeScreenState extends State<HomeScreen> {
           Padding(
             padding: const EdgeInsets.all(FVTokens.m),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                DropdownButton<String>(
-                  value: 'EN',
-                  items: const [
-                    DropdownMenuItem(value: 'EN', child: Text('EN')),
-                    DropdownMenuItem(value: 'DE', child: Text('DE')),
-                    DropdownMenuItem(value: 'HI', child: Text('HI')),
-                  ],
-                  onChanged: (val) {
-                    // Wired to state only, no content
-                  },
-                ),
-                Row(
-                  children: [
-                    if (_voiceService.isListening)
-                      const Padding(
-                        padding: EdgeInsets.only(right: 8.0),
-                        child: Text('Listening...', style: TextStyle(color: FVTokens.ink, fontStyle: FontStyle.italic)),
-                      ),
-                    IconButton(
-                      icon: Icon(_voiceService.isListening ? Icons.mic_off : Icons.mic),
-                      color: _voiceService.isListening ? Colors.red : null,
-                      style: IconButton.styleFrom(
-                        minimumSize: const Size(FVTokens.aMinTapTarget, FVTokens.aMinTapTarget),
-                      ),
-                      onPressed: _handleMicTap,
-                    ),
-                  ],
+                if (_voiceService.isListening)
+                  const Padding(
+                    padding: EdgeInsets.only(right: 8.0),
+                    child: Text('Listening...', style: TextStyle(color: FVTokens.ink, fontStyle: FontStyle.italic)),
+                  ),
+                IconButton(
+                  icon: Icon(_voiceService.isListening ? Icons.mic_off : Icons.mic),
+                  color: _voiceService.isListening ? Colors.red : null,
+                  style: IconButton.styleFrom(
+                    minimumSize: const Size(FVTokens.aMinTapTarget, FVTokens.aMinTapTarget),
+                  ),
+                  onPressed: _handleMicTap,
                 ),
               ],
             ),
@@ -299,24 +285,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                           onPressed: () => savedService.toggleSave(story.id),
                                         ),
-                                        onTap: () {
-                                          if (!unlocked) {
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder: (_) => const PaywallScreen(),
-                                              ),
-                                            );
-                                            return;
-                                          }
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (_) => StoryPlayerScreen(
-                                                story: story,
-                                                approvedCast: const {'boy': true},
-                                              ),
-                                            ),
-                                          );
-                                        },
+                                        onTap: () => _openStory(context, story, pack),
                                       ),
                                     );
                                   },
