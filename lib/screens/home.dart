@@ -5,12 +5,15 @@ import '../domain/models.dart';
 import '../domain/voice_match.dart';
 import '../state/theme_controller.dart';
 import '../services/saved_stories_service.dart';
+import '../services/entitlement_service.dart';
+import '../domain/entitlement.dart';
 import '../design/tokens.dart';
 import '../widgets/parent_gate.dart';
 import '../services/pack_loader.dart';
 import '../services/voice_service.dart';
 import 'settings.dart';
 import 'story_player.dart';
+import 'paywall.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -39,6 +42,29 @@ class _HomeScreenState extends State<HomeScreen> {
   void dispose() {
     _voiceService.dispose();
     super.dispose();
+  }
+
+  void _openStory(BuildContext context, Story story, StoryPack pack) {
+    final freeSampleId = pack.stories.isNotEmpty ? pack.stories.first.id : null;
+    final entitlement = Provider.of<EntitlementService>(context, listen: false);
+    final unlocked = isStoryUnlocked(
+      isPremium: entitlement.isPremium,
+      isFreeSample: story.id == freeSampleId,
+    );
+    if (!unlocked) {
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (_) => const PaywallScreen()),
+      );
+      return;
+    }
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => StoryPlayerScreen(
+          story: story,
+          approvedCast: const {'boy': true},
+        ),
+      ),
+    );
   }
 
   Future<void> _handleMicTap() async {
@@ -97,14 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
         if (!mounted) return;
         final match = matchStoryByVoice(transcript, pack.stories);
         if (match != null) {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => StoryPlayerScreen(
-                story: match,
-                approvedCast: const {'boy': true},
-              ),
-            ),
-          );
+          _openStory(context, match, pack);
         } else {
           showDialog(
             context: context,
@@ -115,14 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
               actions: pack.stories.map((s) => TextButton(
                 onPressed: () {
                   Navigator.of(ctx).pop();
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => StoryPlayerScreen(
-                        story: s,
-                        approvedCast: const {'boy': true},
-                      ),
-                    ),
-                  );
+                  _openStory(context, s, pack);
                 },
                 child: Text(s.title['en'] ?? 'Story', style: const TextStyle(color: FVTokens.ink)),
               )).toList()..add(
@@ -214,8 +226,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
 
                 final pack = snapshot.data!;
-                return Consumer<SavedStoriesService>(
-                  builder: (context, savedService, _) {
+                final freeSampleId =
+                    pack.stories.isNotEmpty ? pack.stories.first.id : null;
+                return Consumer2<SavedStoriesService, EntitlementService>(
+                  builder: (context, savedService, entitlement, _) {
                     final stories = _showSavedOnly
                         ? pack.stories.where((s) => savedService.isSaved(s.id)).toList()
                         : pack.stories;
@@ -260,6 +274,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   itemBuilder: (context, index) {
                                     final story = stories[index];
                                     final isSaved = savedService.isSaved(story.id);
+                                    final unlocked = isStoryUnlocked(
+                                      isPremium: entitlement.isPremium,
+                                      isFreeSample: story.id == freeSampleId,
+                                    );
                                     return Card(
                                       color: FVTokens.surfaceAlt,
                                       shape: RoundedRectangleBorder(
@@ -268,12 +286,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                       child: ListTile(
                                         contentPadding: const EdgeInsets.all(FVTokens.m),
                                         leading: Icon(
-                                          Icons.menu_book,
+                                          unlocked ? Icons.menu_book : Icons.lock_outline,
                                           size: 48,
                                           color: Theme.of(context).colorScheme.primary,
                                         ),
                                         title: Text(story.title['en'] ?? 'Story'),
-                                        subtitle: const Text('Tap to read'),
+                                        subtitle: Text(unlocked ? 'Tap to read' : 'Tap to unlock'),
                                         trailing: IconButton(
                                           icon: Icon(
                                             isSaved ? Icons.favorite : Icons.favorite_border,
@@ -282,6 +300,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                           onPressed: () => savedService.toggleSave(story.id),
                                         ),
                                         onTap: () {
+                                          if (!unlocked) {
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (_) => const PaywallScreen(),
+                                              ),
+                                            );
+                                            return;
+                                          }
                                           Navigator.of(context).push(
                                             MaterialPageRoute(
                                               builder: (_) => StoryPlayerScreen(

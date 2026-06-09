@@ -4,6 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'domain/models.dart';
 import 'state/theme_controller.dart';
 import 'services/saved_stories_service.dart';
+import 'services/entitlement_service.dart';
+import 'services/iap_service.dart';
 import 'design/fv_theme.dart';
 import 'screens/mode_selector.dart';
 import 'screens/home.dart';
@@ -24,6 +26,12 @@ void main() async {
   final savedStoriesService = SavedStoriesService();
   await savedStoriesService.load();
 
+  final entitlementService = EntitlementService();
+  await entitlementService.load();
+
+  final iapService = IapService(entitlementService);
+  await iapService.initialize();
+
   runApp(
     MultiProvider(
       providers: [
@@ -35,6 +43,8 @@ void main() async {
           },
         ),
         ChangeNotifierProvider.value(value: savedStoriesService),
+        ChangeNotifierProvider.value(value: entitlementService),
+        ChangeNotifierProvider.value(value: iapService),
       ],
       child: FullVolumeApp(hasInitialMode: initialMode != null),
     ),
