@@ -1,0 +1,73 @@
+{
+  "id": "pack_loud",
+  "mode": "neurodivergent",
+  "sku": "sku_loud_001",
+  "copingCards": {
+    "card_breathe": {
+      "id": "card_breathe",
+      "title": "Take a calm breath",
+      "steps": [
+        "Breathe in slowly while I count to four.",
+        "Hold it for a moment.",
+        "Breathe out slowly while I count to four.",
+        "We can do this two more times."
+      ]
+    }
+  },
+  "stories": [
+    {
+      "id": "story_loud_001",
+      "mode": "neurodivergent",
+      "template": "firstThen",
+      "title": {
+        "en": "When the World Gets Loud"
+      },
+      "learningGoal": "Noticing when sounds feel too big, and using slow breaths and a quiet helper to feel calm again.",
+      "pages": [
+        {
+          "text": "This is Mira. Mira likes things calm and quiet.",
+          "imageAsset": "assets/packs/images/mira_01_quiet_morning.png",
+          "copingCardId": null
+        },
+        {
+          "text": "First, we go to the shop to buy some apples.",
+          "imageAsset": "assets/packs/images/mira_02_go_to_store.png",
+          "copingCardId": null
+        },
+        {
+          "text": "Inside, it is very bright. The sounds get big.",
+          "imageAsset": "assets/packs/images/mira_03_too_loud.png",
+          "copingCardId": null
+        },
+        {
+          "text": "My tummy feels fluttery. That is okay.",
+          "imageAsset": "assets/packs/images/mira_04_body_signal.png",
+          "copingCardId": null
+        },
+        {
+          "text": "First, I take a slow, calm breath.",
+          "imageAsset": "assets/packs/images/mira_05_calm_breath.png",
+          "copingCardId": "card_breathe"
+        },
+        {
+          "text": "Then, I put on my quiet ear-muffs.",
+          "imageAsset": "assets/packs/images/mira_06_ear_muffs.png",
+          "copingCardId": null
+        },
+        {
+          "text": "The sounds feel smaller now. I feel calm.",
+          "imageAsset": "assets/packs/images/mira_07_smaller_sounds.png",
+          "copingCardId": null
+        },
+        {
+          "text": "I did it. I helped my body feel calm.",
+          "imageAsset": "assets/packs/images/mira_08_i_did_it.png",
+          "copingCardId": null
+        }
+      ],
+      "voiceKeywords": ["loud", "noise", "calm", "quiet", "shop", "breathe"],
+      "castIds": ["mira"],
+      "lowArousal": true
+    }
+  ]
+}
