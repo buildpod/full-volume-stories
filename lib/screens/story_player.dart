@@ -3,6 +3,8 @@ import 'package:flutter_tts/flutter_tts.dart';
 import '../domain/models.dart';
 import '../domain/cast_check.dart';
 import '../design/tokens.dart';
+import '../widgets/parent_gate.dart';
+import '../services/pdf_export.dart';
 
 class StoryPlayerScreen extends StatefulWidget {
   final Story story;
@@ -125,6 +127,17 @@ class _StoryPlayerScreenState extends State<StoryPlayerScreen> {
             Navigator.of(context).pop();
           },
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.picture_as_pdf_outlined),
+            tooltip: 'Export as PDF',
+            onPressed: () async {
+              final passed = await showParentGate(context);
+              if (!mounted || !passed) return;
+              await exportStoryToPdf(widget.story);
+            },
+          ),
+        ],
       ),
       body: SafeArea(
         child: Column(

@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../domain/models.dart';
 import '../domain/voice_match.dart';
 import '../state/theme_controller.dart';
+import '../services/saved_stories_service.dart';
 import '../design/tokens.dart';
 import '../widgets/parent_gate.dart';
 import '../services/pack_loader.dart';
@@ -21,6 +22,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   Future<StoryPack>? _packFuture;
   final VoiceService _voiceService = VoiceService();
+  bool _showSavedOnly = false;
 
   @override
   void initState() {
@@ -212,36 +214,89 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
 
                 final pack = snapshot.data!;
-                return ListView.builder(
-                  padding: const EdgeInsets.all(FVTokens.m),
-                  itemCount: pack.stories.length,
-                  itemBuilder: (context, index) {
-                    final story = pack.stories[index];
-                    return Card(
-                      color: FVTokens.surfaceAlt,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(FVTokens.radiusCard),
-                      ),
-                      child: ListTile(
-                        contentPadding: const EdgeInsets.all(FVTokens.m),
-                        leading: Icon(
-                          Icons.menu_book,
-                          size: 48,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                        title: Text(story.title['en'] ?? 'Story'),
-                        subtitle: const Text('Tap to read'),
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) => StoryPlayerScreen(
-                                story: story,
-                                approvedCast: const {'boy': true},
+                return Consumer<SavedStoriesService>(
+                  builder: (context, savedService, _) {
+                    final stories = _showSavedOnly
+                        ? pack.stories.where((s) => savedService.isSaved(s.id)).toList()
+                        : pack.stories;
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: FVTokens.m,
+                            vertical: FVTokens.xs,
+                          ),
+                          child: Row(
+                            children: [
+                              FilterChip(
+                                label: const Text('All'),
+                                selected: !_showSavedOnly,
+                                onSelected: (_) => setState(() => _showSavedOnly = false),
                               ),
-                            ),
-                          );
-                        },
-                      ),
+                              const SizedBox(width: FVTokens.s),
+                              FilterChip(
+                                label: const Text('Saved'),
+                                selected: _showSavedOnly,
+                                onSelected: (_) => setState(() => _showSavedOnly = true),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: stories.isEmpty
+                              ? Center(
+                                  child: Text(
+                                    _showSavedOnly
+                                        ? 'No saved stories yet.\nTap ♥ on any story to save it.'
+                                        : 'No stories found.',
+                                    style: const TextStyle(color: FVTokens.ink),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                )
+                              : ListView.builder(
+                                  padding: const EdgeInsets.all(FVTokens.m),
+                                  itemCount: stories.length,
+                                  itemBuilder: (context, index) {
+                                    final story = stories[index];
+                                    final isSaved = savedService.isSaved(story.id);
+                                    return Card(
+                                      color: FVTokens.surfaceAlt,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(FVTokens.radiusCard),
+                                      ),
+                                      child: ListTile(
+                                        contentPadding: const EdgeInsets.all(FVTokens.m),
+                                        leading: Icon(
+                                          Icons.menu_book,
+                                          size: 48,
+                                          color: Theme.of(context).colorScheme.primary,
+                                        ),
+                                        title: Text(story.title['en'] ?? 'Story'),
+                                        subtitle: const Text('Tap to read'),
+                                        trailing: IconButton(
+                                          icon: Icon(
+                                            isSaved ? Icons.favorite : Icons.favorite_border,
+                                            color: isSaved ? Colors.red : FVTokens.ink,
+                                          ),
+                                          onPressed: () => savedService.toggleSave(story.id),
+                                        ),
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (_) => StoryPlayerScreen(
+                                                story: story,
+                                                approvedCast: const {'boy': true},
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  },
+                                ),
+                        ),
+                      ],
                     );
                   },
                 );
