@@ -1,0 +1,61 @@
+{
+  "id": "pack_threefish",
+  "mode": "general",
+  "sku": "sku_threefish_001",
+  "stories": [
+    {
+      "id": "story_threefish_01",
+      "mode": "general",
+      "template": "narrative",
+      "title": {
+        "en": "The Three Fish"
+      },
+      "pages": [
+        {
+          "text": "Three little fish lived in a beautiful, sunny pond.",
+          "imageAsset": "assets/packs/images/fish_01_pond.png",
+          "copingCardId": null
+        },
+        {
+          "text": "The orange fish always planned ahead. The blue fish was very quick.",
+          "imageAsset": "assets/packs/images/fish_02_two_fish.png",
+          "copingCardId": null
+        },
+        {
+          "text": "But the yellow fish was lazy and liked to wait.",
+          "imageAsset": "assets/packs/images/fish_03_lazy_fish.png",
+          "copingCardId": null
+        },
+        {
+          "text": "One day, a big fishing net splashed into the water!",
+          "imageAsset": "assets/packs/images/fish_04_net_splashes.png",
+          "copingCardId": null
+        },
+        {
+          "text": "The orange fish had already swam safely to the deep reeds.",
+          "imageAsset": "assets/packs/images/fish_05_orange_safe.png",
+          "copingCardId": null
+        },
+        {
+          "text": "The blue fish thought quickly and hid under a large lily pad.",
+          "imageAsset": "assets/packs/images/fish_06_blue_hides.png",
+          "copingCardId": null
+        },
+        {
+          "text": "The yellow fish woke up and had to swim faster than ever before!",
+          "imageAsset": "assets/packs/images/fish_07_yellow_swims.png",
+          "copingCardId": null
+        },
+        {
+          "text": "All three fish made it to the deep water, safe and sound.",
+          "imageAsset": "assets/packs/images/fish_08_safe_together.png",
+          "copingCardId": null
+        }
+      ],
+      "voiceKeywords": ["fish", "pond", "swim", "water", "net", "safe"],
+      "castIds": ["orangefish", "bluefish", "yellowfish"],
+      "lowArousal": false,
+      "learningGoal": "Act in time and don't put off what matters."
+    }
+  ]
+}
