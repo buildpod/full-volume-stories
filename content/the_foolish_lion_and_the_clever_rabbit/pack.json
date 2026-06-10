@@ -1,0 +1,61 @@
+{
+  "id": "pack_lionrabbit",
+  "mode": "general",
+  "sku": "sku_lionrabbit_001",
+  "stories": [
+    {
+      "id": "story_lionrabbit_01",
+      "mode": "general",
+      "template": "narrative",
+      "title": {
+        "en": "The Foolish Lion and the Clever Rabbit"
+      },
+      "pages": [
+        {
+          "text": "Once, a loud and bossy lion lived in a sunny forest.",
+          "imageAsset": "assets/packs/images/lion_01_bossy.png",
+          "copingCardId": null
+        },
+        {
+          "text": "He roared at the animals every single day.",
+          "imageAsset": "assets/packs/images/lion_02_roaring.png",
+          "copingCardId": null
+        },
+        {
+          "text": "One morning, a clever little rabbit came to see him.",
+          "imageAsset": "assets/packs/images/lion_03_rabbit_arrives.png",
+          "copingCardId": null
+        },
+        {
+          "text": "'There is another lion by the well!' the rabbit said bravely.",
+          "imageAsset": "assets/packs/images/lion_04_rabbit_speaks.png",
+          "copingCardId": null
+        },
+        {
+          "text": "The foolish lion stomped over to look down the deep well.",
+          "imageAsset": "assets/packs/images/lion_05_looks_down.png",
+          "copingCardId": null
+        },
+        {
+          "text": "He saw his own face in the water, but thought it was a stranger.",
+          "imageAsset": "assets/packs/images/lion_06_reflection.png",
+          "copingCardId": null
+        },
+        {
+          "text": "He jumped in to splash the stranger, and got very wet and humbled!",
+          "imageAsset": "assets/packs/images/lion_07_splash.png",
+          "copingCardId": null
+        },
+        {
+          "text": "The quiet animals smiled, safe and peaceful at last.",
+          "imageAsset": "assets/packs/images/lion_08_safe_forest.png",
+          "copingCardId": null
+        }
+      ],
+      "voiceKeywords": ["lion", "rabbit", "water", "splash", "forest"],
+      "castIds": ["bhasuraka", "chatur"],
+      "lowArousal": false,
+      "learningGoal": "Quick thinking beats brute strength, and the importance of staying calm in tough situations."
+    }
+  ]
+}
