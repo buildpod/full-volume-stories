@@ -10,6 +10,7 @@ import '../domain/entitlement.dart';
 import '../design/tokens.dart';
 import '../widgets/parent_gate.dart';
 import '../services/pack_loader.dart';
+import '../services/manifest_loader.dart';
 import '../services/voice_service.dart';
 import 'settings.dart';
 import 'story_player.dart';
@@ -24,14 +25,17 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Future<StoryPack>? _packFuture;
+  Map<String, bool> _approvedCast = {};
   final VoiceService _voiceService = VoiceService();
   bool _showSavedOnly = false;
 
   @override
   void initState() {
     super.initState();
-    // Temporary hardcoded test approval map until cast_manifest.json exists
-    _packFuture = loadPack('assets/packs/sample_neuro.json', const {'boy': true});
+    _packFuture = () async {
+      _approvedCast = await loadCastManifest();
+      return loadPack('assets/packs/sample_neuro.json', _approvedCast);
+    }();
     _voiceService.initialize();
     _voiceService.addListener(() {
       setState(() {});
@@ -61,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
       MaterialPageRoute(
         builder: (_) => StoryPlayerScreen(
           story: story,
-          approvedCast: const {'boy': true},
+          approvedCast: _approvedCast,
           copingCards: pack.copingCards,
         ),
       ),
