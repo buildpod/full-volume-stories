@@ -1,0 +1,61 @@
+{
+  "id": "pack_wisequail",
+  "mode": "general",
+  "sku": "sku_wisequail_001",
+  "stories": [
+    {
+      "id": "story_wisequail_01",
+      "mode": "general",
+      "template": "narrative",
+      "title": {
+        "en": "The Wise Quail"
+      },
+      "pages": [
+        {
+          "text": "A flock of little quails lived in the tall, soft grass.",
+          "imageAsset": "assets/packs/images/quail_01_flock.png",
+          "copingCardId": null
+        },
+        {
+          "text": "They loved to search for tasty seeds all day long.",
+          "imageAsset": "assets/packs/images/quail_02_seeds.png",
+          "copingCardId": null
+        },
+        {
+          "text": "One day, a big soft net fell right over the flock!",
+          "imageAsset": "assets/packs/images/quail_03_net.png",
+          "copingCardId": null
+        },
+        {
+          "text": "The quails fluttered and bumped into each other, feeling scared.",
+          "imageAsset": "assets/packs/images/quail_04_scared.png",
+          "copingCardId": null
+        },
+        {
+          "text": "'Stop flapping!' called the wise leader quail. 'We must work together!'",
+          "imageAsset": "assets/packs/images/quail_05_leader.png",
+          "copingCardId": null
+        },
+        {
+          "text": "'On the count of three, everyone fly straight up!'",
+          "imageAsset": "assets/packs/images/quail_06_plan.png",
+          "copingCardId": null
+        },
+        {
+          "text": "One, two, three! They all flapped hard and lifted the net into the sky.",
+          "imageAsset": "assets/packs/images/quail_07_lifting.png",
+          "copingCardId": null
+        },
+        {
+          "text": "They flew to a thorny bush, dropped the net, and were safe and free.",
+          "imageAsset": "assets/packs/images/quail_08_safe.png",
+          "copingCardId": null
+        }
+      ],
+      "voiceKeywords": ["quail", "grass", "net", "fly", "up", "safe"],
+      "castIds": ["leader_quail", "flock_quail"],
+      "lowArousal": false,
+      "learningGoal": "Working together makes us strong enough to solve big problems."
+    }
+  ]
+}
