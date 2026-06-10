@@ -1,0 +1,61 @@
+{
+  "id": "pack_miceateiron",
+  "mode": "general",
+  "sku": "sku_miceiron_001",
+  "stories": [
+    {
+      "id": "story_miceiron_01",
+      "mode": "general",
+      "template": "narrative",
+      "title": {
+        "en": "The Mice that Ate Iron"
+      },
+      "pages": [
+        {
+          "text": "Naduka left his heavy iron weighing scales with his friend Lakshman.",
+          "imageAsset": "assets/packs/images/iron_01_leaving.png",
+          "copingCardId": null
+        },
+        {
+          "text": "When he came back, Lakshman said, 'Oh, the mice ate your iron scales!'",
+          "imageAsset": "assets/packs/images/iron_02_lie_one.png",
+          "copingCardId": null
+        },
+        {
+          "text": "Naduka knew mice could not eat iron, but he did not shout.",
+          "imageAsset": "assets/packs/images/iron_03_thinks.png",
+          "copingCardId": null
+        },
+        {
+          "text": "The next day, Naduka hid Lakshman's favorite walking stick.",
+          "imageAsset": "assets/packs/images/iron_04_hiding.png",
+          "copingCardId": null
+        },
+        {
+          "text": "'Oh no,' said Naduka. 'A small bird flew away with your stick!'",
+          "imageAsset": "assets/packs/images/iron_05_lie_two.png",
+          "copingCardId": null
+        },
+        {
+          "text": "Lakshman realized his friend was tricking him back.",
+          "imageAsset": "assets/packs/images/iron_06_realizes.png",
+          "copingCardId": null
+        },
+        {
+          "text": "Both friends laughed and confessed their silly lies.",
+          "imageAsset": "assets/packs/images/iron_07_confess.png",
+          "copingCardId": null
+        },
+        {
+          "text": "Lakshman returned the iron scales, and Naduka returned the stick.",
+          "imageAsset": "assets/packs/images/iron_08_friends_again.png",
+          "copingCardId": null
+        }
+      ],
+      "voiceKeywords": ["iron", "mice", "bird", "stick", "friend", "laugh"],
+      "castIds": ["naduka", "lakshman"],
+      "lowArousal": false,
+      "learningGoal": "Honesty is the best policy, and true friends tell the truth."
+    }
+  ]
+}
