@@ -1,0 +1,61 @@
+{
+  "id": "pack_bluejackal",
+  "mode": "general",
+  "sku": "sku_bluejackal_001",
+  "stories": [
+    {
+      "id": "story_bluejackal_01",
+      "mode": "general",
+      "template": "narrative",
+      "title": {
+        "en": "The Blue Jackal"
+      },
+      "pages": [
+        {
+          "text": "Chanda the jackal was always looking for an easy dinner.",
+          "imageAsset": "assets/packs/images/jackal_01_hungry.png",
+          "copingCardId": null
+        },
+        {
+          "text": "One night, he tripped and fell into a big pot of blue dye!",
+          "imageAsset": "assets/packs/images/jackal_02_fall.png",
+          "copingCardId": null
+        },
+        {
+          "text": "He climbed out, looking very bright and very blue.",
+          "imageAsset": "assets/packs/images/jackal_03_blue.png",
+          "copingCardId": null
+        },
+        {
+          "text": "The forest animals thought he was a magical new king.",
+          "imageAsset": "assets/packs/images/jackal_04_king.png",
+          "copingCardId": null
+        },
+        {
+          "text": "He sat on a tall rock and let everyone bring him treats.",
+          "imageAsset": "assets/packs/images/jackal_05_treats.png",
+          "copingCardId": null
+        },
+        {
+          "text": "But soon, a real jackal howled happily in the distance.",
+          "imageAsset": "assets/packs/images/jackal_06_howl_heard.png",
+          "copingCardId": null
+        },
+        {
+          "text": "Chanda forgot he was the king and howled right back!",
+          "imageAsset": "assets/packs/images/jackal_07_howling.png",
+          "copingCardId": null
+        },
+        {
+          "text": "The animals laughed, and the silly blue jackal ran away to wash.",
+          "imageAsset": "assets/packs/images/jackal_08_washing.png",
+          "copingCardId": null
+        }
+      ],
+      "voiceKeywords": ["jackal", "blue", "pot", "king", "howl", "wash"],
+      "castIds": ["chanda"],
+      "lowArousal": false,
+      "learningGoal": "Be yourself, because honesty is better than pretending."
+    }
+  ]
+}
