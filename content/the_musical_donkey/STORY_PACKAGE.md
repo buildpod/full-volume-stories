@@ -77,8 +77,8 @@ image. Square 1:1, 1024x1024.
 **Scene:** `Dron the donkey singing as loudly as he can, with a big goofy smile. The jackal is covering his pointy ears with his paws, wincing gently. Mood: very loud, comedic.`
 
 ### Page 7 — `donkey_07_shooed.png` (Dron + Jackal Friend)
-**Text:** "The farmer woke up and shooed them right out of the field."
-**Scene:** `A farmer holding a wooden stick, gently but firmly shooing Dron and the jackal out of the cucumber field. No one is hurt, everyone is just running away safely in the moonlight. The farmer is annoyed, not violent. Mood: rushing, safe escape.`
+**Text:** "A lantern lit up in the farmhouse window, and they knew it was time to run!"
+**Scene:** `A warm yellow lantern lighting up in the window of a small farmhouse in the distance. Dron the donkey and the jackal running safely and cheerfully out of the cucumber field in the moonlight. No people shown. Mood: rushing, safe escape.`
 
 ### Page 8 — `donkey_08_lesson.png` (Dron + Jackal Friend)
 **Text:** "Dron realized that there is a right time and a right place for everything."
