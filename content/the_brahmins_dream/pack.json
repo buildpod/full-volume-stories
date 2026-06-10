@@ -1,0 +1,61 @@
+{
+  "id": "pack_brahminsdream",
+  "mode": "general",
+  "sku": "sku_brahmin_001",
+  "stories": [
+    {
+      "id": "story_brahmin_01",
+      "mode": "general",
+      "template": "narrative",
+      "title": {
+        "en": "The Boy's Dream"
+      },
+      "pages": [
+        {
+          "text": "Dev was a young boy who helped make beautiful clay pots.",
+          "imageAsset": "assets/packs/images/dream_01_boy.png",
+          "copingCardId": null
+        },
+        {
+          "text": "One warm afternoon, he sat next to a big pile of finished pots.",
+          "imageAsset": "assets/packs/images/dream_02_pots.png",
+          "copingCardId": null
+        },
+        {
+          "text": "He closed his eyes and began to daydream about the future.",
+          "imageAsset": "assets/packs/images/dream_03_sleep.png",
+          "copingCardId": null
+        },
+        {
+          "text": "He dreamed he sold all the pots and bought a soft, white cow.",
+          "imageAsset": "assets/packs/images/dream_04_cow.png",
+          "copingCardId": null
+        },
+        {
+          "text": "Then he dreamed he became the richest boy in the whole village!",
+          "imageAsset": "assets/packs/images/dream_05_rich.png",
+          "copingCardId": null
+        },
+        {
+          "text": "In his dream, he waved his stick proudly in the air.",
+          "imageAsset": "assets/packs/images/dream_06_waving.png",
+          "copingCardId": null
+        },
+        {
+          "text": "Smash! He woke up and saw he had broken his own pots by mistake.",
+          "imageAsset": "assets/packs/images/dream_07_smash.png",
+          "copingCardId": null
+        },
+        {
+          "text": "Dev sighed and smiled, deciding to focus on the work right in front of him.",
+          "imageAsset": "assets/packs/images/dream_08_smile.png",
+          "copingCardId": null
+        }
+      ],
+      "voiceKeywords": ["boy", "pot", "dream", "cow", "stick", "smash"],
+      "castIds": ["dev"],
+      "lowArousal": false,
+      "learningGoal": "Don't count on what you don't yet have; focus on the present."
+    }
+  ]
+}
