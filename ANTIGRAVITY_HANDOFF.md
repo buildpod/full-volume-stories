@@ -108,3 +108,8 @@ commercial-terms / SynthID / C2PA disclosure verification (human launch tasks),
 and anything marked locked above.
 
 Work sequentially. After each task, report: what changed, test count, commit hash.
+
+**Oversight:** every batch you produce is audited against `OVERSIGHT.md` (release
+gates + audit protocol) by a reviewing agent before work continues. A FAIL verdict
+means you fix the listed items before starting the next task. You may not edit
+`OVERSIGHT.md` or mark its checkboxes.
