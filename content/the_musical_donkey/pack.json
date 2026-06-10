@@ -1,0 +1,61 @@
+{
+  "id": "pack_musicaldonkey",
+  "mode": "general",
+  "sku": "sku_musicaldonkey_001",
+  "stories": [
+    {
+      "id": "story_musicaldonkey_01",
+      "mode": "general",
+      "template": "narrative",
+      "title": {
+        "en": "The Musical Donkey"
+      },
+      "pages": [
+        {
+          "text": "Dron the donkey loved to sing, but his voice was very loud.",
+          "imageAsset": "assets/packs/images/donkey_01_singing.png",
+          "copingCardId": null
+        },
+        {
+          "text": "One night, he and his jackal friend went to a cucumber field.",
+          "imageAsset": "assets/packs/images/donkey_02_field.png",
+          "copingCardId": null
+        },
+        {
+          "text": "The cucumbers were so crunchy and sweet!",
+          "imageAsset": "assets/packs/images/donkey_03_eating.png",
+          "copingCardId": null
+        },
+        {
+          "text": "Dron was so happy he wanted to sing a very loud song.",
+          "imageAsset": "assets/packs/images/donkey_04_happy.png",
+          "copingCardId": null
+        },
+        {
+          "text": "'Wait!' said the jackal. 'The farmer is sleeping nearby!'",
+          "imageAsset": "assets/packs/images/donkey_05_warning.png",
+          "copingCardId": null
+        },
+        {
+          "text": "But Dron did not listen, and began to sing a loud 'Hee-haw!'",
+          "imageAsset": "assets/packs/images/donkey_06_loud_song.png",
+          "copingCardId": null
+        },
+        {
+          "text": "The farmer woke up and shooed them right out of the field.",
+          "imageAsset": "assets/packs/images/donkey_07_shooed.png",
+          "copingCardId": null
+        },
+        {
+          "text": "Dron realized that there is a right time and a right place for everything.",
+          "imageAsset": "assets/packs/images/donkey_08_lesson.png",
+          "copingCardId": null
+        }
+      ],
+      "voiceKeywords": ["donkey", "jackal", "sing", "loud", "farmer", "field"],
+      "castIds": ["dron_donkey", "jackal_friend"],
+      "lowArousal": false,
+      "learningGoal": "There is a right time and place for everything, and listening to friends is smart."
+    }
+  ]
+}
