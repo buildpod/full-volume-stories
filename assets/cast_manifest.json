@@ -1,86 +1,86 @@
 {
-  "dev": {
-    "approved": false,
-    "notes": "Pending review"
-  },
-  "dron_donkey": {
-    "approved": false,
-    "notes": "Pending review"
-  },
-  "jackal_friend": {
-    "approved": false,
-    "notes": "Pending review"
-  },
   "bhasuraka": {
-    "approved": true,
-    "notes": "Pending review"
-  },
-  "chatur": {
-    "approved": true,
-    "notes": "Pending review"
-  },
-  "chanda": {
     "approved": false,
-    "notes": "Pending review"
-  },
-  "mira": {
-    "approved": false,
-    "notes": "Pending review"
-  },
-  "orangefish": {
-    "approved": false,
-    "notes": "Pending review"
+    "notes": "Used by the_foolish_lion_and_the_clever_rabbit; awaiting human review of generated images"
   },
   "bluefish": {
     "approved": false,
-    "notes": "Pending review"
-  },
-  "yellowfish": {
-    "approved": false,
-    "notes": "Pending review"
-  },
-  "leader_quail": {
-    "approved": false,
-    "notes": "Pending review"
-  },
-  "flock_quail": {
-    "approved": false,
-    "notes": "Pending review"
-  },
-  "rakta": {
-    "approved": false,
-    "notes": "Pending review"
-  },
-  "karala": {
-    "approved": false,
-    "notes": "Pending review"
-  },
-  "bula": {
-    "approved": false,
-    "notes": "Pending review"
-  },
-  "chiku": {
-    "approved": false,
-    "notes": "Pending review"
-  },
-  "naduka": {
-    "approved": false,
-    "notes": "Pending review"
-  },
-  "lakshman": {
-    "approved": false,
-    "notes": "Pending review"
-  },
-  "kambu": {
-    "approved": true,
-    "notes": "Pending review"
-  },
-  "goose": {
-    "approved": true,
-    "notes": "Pending review"
+    "notes": "Used by the_three_fish; awaiting human review of generated images"
   },
   "boy": {
     "approved": true,
-    "notes": "2 images in /review_queue/ are PENDING formal human review and must be re-confirmed before any store build"
+    "notes": "Sample story; 2 images in /review_queue/ PENDING formal human review - re-confirm before any store build"
+  },
+  "bula": {
+    "approved": false,
+    "notes": "Used by the_elephants_and_the_mice; awaiting human review of generated images"
+  },
+  "chanda": {
+    "approved": false,
+    "notes": "Used by the_blue_jackal; awaiting human review of generated images"
+  },
+  "chatur": {
+    "approved": false,
+    "notes": "Used by the_foolish_lion_and_the_clever_rabbit; awaiting human review of generated images"
+  },
+  "chiku": {
+    "approved": false,
+    "notes": "Used by the_elephants_and_the_mice; awaiting human review of generated images"
+  },
+  "dev": {
+    "approved": false,
+    "notes": "Used by the_brahmins_dream; awaiting human review of generated images"
+  },
+  "dron_donkey": {
+    "approved": false,
+    "notes": "Used by the_musical_donkey; awaiting human review of generated images"
+  },
+  "flock_quail": {
+    "approved": false,
+    "notes": "Used by the_wise_quail; awaiting human review of generated images"
+  },
+  "goose": {
+    "approved": false,
+    "notes": "Used by the_talkative_tortoise; awaiting human review of generated images"
+  },
+  "jackal_friend": {
+    "approved": false,
+    "notes": "Used by the_musical_donkey; awaiting human review of generated images"
+  },
+  "kambu": {
+    "approved": false,
+    "notes": "Used by the_talkative_tortoise; awaiting human review of generated images"
+  },
+  "karala": {
+    "approved": false,
+    "notes": "Used by the_monkey_and_the_crocodile; awaiting human review of generated images"
+  },
+  "lakshman": {
+    "approved": false,
+    "notes": "Used by the_mice_that_ate_iron; awaiting human review of generated images"
+  },
+  "leader_quail": {
+    "approved": false,
+    "notes": "Used by the_wise_quail; awaiting human review of generated images"
+  },
+  "mira": {
+    "approved": false,
+    "notes": "Used by when_the_world_gets_loud; awaiting human review of generated images"
+  },
+  "naduka": {
+    "approved": false,
+    "notes": "Used by the_mice_that_ate_iron; awaiting human review of generated images"
+  },
+  "orangefish": {
+    "approved": false,
+    "notes": "Used by the_three_fish; awaiting human review of generated images"
+  },
+  "rakta": {
+    "approved": false,
+    "notes": "Used by the_monkey_and_the_crocodile; awaiting human review of generated images"
+  },
+  "yellowfish": {
+    "approved": false,
+    "notes": "Used by the_three_fish; awaiting human review of generated images"
   }
 }
