@@ -41,5 +41,21 @@ void main() {
       expect(packs.first.stories.first.id, 's1');
       expect(packs[1].stories.first.id, 's2');
     });
+
+    test('freeSampleIdForMode returns correct free sample per mode', () async {
+      final approvedCast = {'boy': true, 'lion': true};
+      final packs = await loadAllPacks(approvedCast);
+      
+      // Packs: [Mode A pack (s1), Mode B pack (s2)]
+      expect(packs.first.mode.name, 'neurodivergent');
+      expect(packs[1].mode.name, 'general');
+
+      // Given Mode A pack first and Mode B pack second:
+      final modeAFreeSample = freeSampleIdForMode(packs, packs.first.mode);
+      final modeBFreeSample = freeSampleIdForMode(packs, packs[1].mode);
+
+      expect(modeAFreeSample, 's1');
+      expect(modeBFreeSample, 's2');
+    });
   });
 }

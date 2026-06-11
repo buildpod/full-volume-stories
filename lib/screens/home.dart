@@ -124,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     final mode = Provider.of<ThemeController>(context, listen: false).mode;
     final validStories = packs.expand((p) => p.stories).where((s) => s.mode == mode).toList();
-    final freeSampleId = packs.isNotEmpty && packs.first.stories.isNotEmpty ? packs.first.stories.first.id : null;
+    final freeSampleId = freeSampleIdForMode(packs, mode);
 
     await _voiceService.startListening(
       onResult: (transcript) {
@@ -221,8 +221,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
 
                 final packs = snapshot.data!;
-                final freeSampleId =
-                    packs.isNotEmpty && packs.first.stories.isNotEmpty ? packs.first.stories.first.id : null;
+                final freeSampleId = freeSampleIdForMode(packs, mode);
                 return Consumer2<SavedStoriesService, EntitlementService>(
                   builder: (context, savedService, entitlement, _) {
                     final allModeStories = packs.expand((p) => p.stories).where((s) => s.mode == mode).toList();

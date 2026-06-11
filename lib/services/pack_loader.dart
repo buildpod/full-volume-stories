@@ -45,3 +45,12 @@ Future<List<StoryPack>> loadAllPacks(Map<String, bool> castApproval) async {
   
   return loadedPacks;
 }
+
+String? freeSampleIdForMode(List<StoryPack> packs, AppMode mode) {
+  for (final pack in packs) {
+    if (pack.mode == mode && pack.stories.isNotEmpty) {
+      return pack.stories.first.id;
+    }
+  }
+  return null;
+}
