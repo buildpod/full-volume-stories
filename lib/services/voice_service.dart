@@ -27,6 +27,7 @@ class VoiceService extends ChangeNotifier {
   }
 
   Future<void> startListening({required Function(String) onResult}) async {
+    if (!_speech.isAvailable) return;
     _isListening = true;
     notifyListeners();
     
