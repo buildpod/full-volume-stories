@@ -14,8 +14,10 @@
     "reviewedDate": "2026-06-11"
   },
   "bula": {
-    "approved": false,
-    "notes": "Used by the_elephants_and_the_mice; awaiting human review of generated images"
+    "approved": true,
+    "notes": "APPROVED 2026-06-11 (owner-delegated, auditor pre-screen): 8/8 style+safety PASS. Minor tusk drift ele_06 noted, non-blocking.",
+    "reviewedBy": "Vineet (delegated) + Claude pre-screen",
+    "reviewedDate": "2026-06-11"
   },
   "chanda": {
     "approved": false,
@@ -26,8 +28,10 @@
     "notes": "Used by the_foolish_lion_and_the_clever_rabbit; awaiting human review of generated images"
   },
   "chiku": {
-    "approved": false,
-    "notes": "Used by the_elephants_and_the_mice; awaiting human review of generated images"
+    "approved": true,
+    "notes": "APPROVED 2026-06-11 (owner-delegated, auditor pre-screen): 8/8 style+safety PASS. Minor design drift ele_01 noted, non-blocking.",
+    "reviewedBy": "Vineet (delegated) + Claude pre-screen",
+    "reviewedDate": "2026-06-11"
   },
   "dev": {
     "approved": false,
@@ -66,8 +70,10 @@
     "notes": "Used by the_wise_quail; awaiting human review of generated images"
   },
   "mira": {
-    "approved": false,
-    "notes": "Used by when_the_world_gets_loud; awaiting human review of generated images"
+    "approved": true,
+    "notes": "APPROVED 2026-06-11 (owner-delegated, auditor pre-screen): 8/8 style+safety PASS. Polish pending: regen mira_07+mira_08 with ear-defender prop matching mira_06 and hair clip visible.",
+    "reviewedBy": "Vineet (delegated) + Claude pre-screen",
+    "reviewedDate": "2026-06-11"
   },
   "naduka": {
     "approved": false,

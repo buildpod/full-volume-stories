@@ -26,17 +26,22 @@
       "pages": [
         {
           "text": "First, we wash our hands.",
-          "imageAsset": "wash_hands.png",
+          "imageAsset": "assets/packs/images/wash_hands.png",
           "copingCardId": "card_breathe"
         },
         {
           "text": "Then, we can eat dinner.",
-          "imageAsset": "eat_dinner.png",
+          "imageAsset": "assets/packs/images/eat_dinner.png",
           "copingCardId": null
         }
       ],
-      "voiceKeywords": ["wash", "eat"],
-      "castIds": ["boy"],
+      "voiceKeywords": [
+        "wash",
+        "eat"
+      ],
+      "castIds": [
+        "boy"
+      ],
       "lowArousal": true
     }
   ]
