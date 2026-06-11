@@ -24,7 +24,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Future<StoryPack>? _packFuture;
+  Future<List<StoryPack>>? _packsFuture;
   Map<String, bool> _approvedCast = {};
   final VoiceService _voiceService = VoiceService();
   bool _showSavedOnly = false;
@@ -32,9 +32,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _packFuture = () async {
+    _packsFuture = () async {
       _approvedCast = await loadCastManifest();
-      return loadPack('assets/packs/sample_neuro.json', _approvedCast);
+      return loadAllPacks(_approvedCast);
     }();
     _voiceService.initialize();
     _voiceService.addListener(() {
@@ -48,8 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
-  void _openStory(BuildContext context, Story story, StoryPack pack) {
-    final freeSampleId = pack.stories.isNotEmpty ? pack.stories.first.id : null;
+  void _openStory(BuildContext context, Story story, StoryPack pack, String? freeSampleId) {
     final entitlement = Provider.of<EntitlementService>(context, listen: false);
     final unlocked = isStoryUnlocked(
       isPremium: entitlement.isPremium,
@@ -120,15 +119,20 @@ class _HomeScreenState extends State<HomeScreen> {
       return;
     }
 
-    final pack = await _packFuture;
-    if (!mounted || pack == null) return;
+    final packs = await _packsFuture;
+    if (!mounted || packs == null) return;
+
+    final mode = Provider.of<ThemeController>(context, listen: false).mode;
+    final validStories = packs.expand((p) => p.stories).where((s) => s.mode == mode).toList();
+    final freeSampleId = packs.isNotEmpty && packs.first.stories.isNotEmpty ? packs.first.stories.first.id : null;
 
     await _voiceService.startListening(
       onResult: (transcript) {
         if (!mounted) return;
-        final match = matchStoryByVoice(transcript, pack.stories);
+        final match = matchStoryByVoice(transcript, validStories);
         if (match != null) {
-          _openStory(context, match, pack);
+          final pack = packs.firstWhere((p) => p.stories.contains(match));
+          _openStory(context, match, pack, freeSampleId);
         } else {
           showDialog(
             context: context,
@@ -136,10 +140,11 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: FVTokens.surface,
               title: const Text('I didn\'t catch that', style: TextStyle(color: FVTokens.ink)),
               content: const Text('Try one of these:', style: TextStyle(color: FVTokens.ink)),
-              actions: pack.stories.map((s) => TextButton(
+              actions: validStories.map((s) => TextButton(
                 onPressed: () {
                   Navigator.of(ctx).pop();
-                  _openStory(context, s, pack);
+                  final p = packs.firstWhere((p) => p.stories.contains(s));
+                  _openStory(context, s, p, freeSampleId);
                 },
                 child: Text(s.title['en'] ?? 'Story', style: const TextStyle(color: FVTokens.ink)),
               )).toList()..add(
@@ -205,8 +210,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           // Packs list
           Expanded(
-            child: FutureBuilder<StoryPack>(
-              future: _packFuture,
+            child: FutureBuilder<List<StoryPack>>(
+              future: _packsFuture,
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
                   return Center(child: Text('Error: ${snapshot.error}', style: const TextStyle(color: FVTokens.ink)));
@@ -215,14 +220,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   return const Center(child: CircularProgressIndicator());
                 }
 
-                final pack = snapshot.data!;
+                final packs = snapshot.data!;
                 final freeSampleId =
-                    pack.stories.isNotEmpty ? pack.stories.first.id : null;
+                    packs.isNotEmpty && packs.first.stories.isNotEmpty ? packs.first.stories.first.id : null;
                 return Consumer2<SavedStoriesService, EntitlementService>(
                   builder: (context, savedService, entitlement, _) {
+                    final allModeStories = packs.expand((p) => p.stories).where((s) => s.mode == mode).toList();
                     final stories = _showSavedOnly
-                        ? pack.stories.where((s) => savedService.isSaved(s.id)).toList()
-                        : pack.stories;
+                        ? allModeStories.where((s) => savedService.isSaved(s.id)).toList()
+                        : allModeStories;
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -289,7 +295,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                           onPressed: () => savedService.toggleSave(story.id),
                                         ),
-                                        onTap: () => _openStory(context, story, pack),
+                                        onTap: () {
+                                          final pack = packs.firstWhere((p) => p.stories.contains(story));
+                                          _openStory(context, story, pack, freeSampleId);
+                                        },
                                       ),
                                     );
                                   },
