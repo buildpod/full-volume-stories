@@ -22,7 +22,18 @@ class IapService extends ChangeNotifier {
   String get priceLabel => _premiumProduct?.price ?? '';
 
   Future<void> initialize() async {
-    _available = await _iap.isAvailable();
+    if (kIsWeb) {
+      _available = false;
+      notifyListeners();
+      return;
+    }
+    
+    try {
+      _available = await _iap.isAvailable();
+    } catch (e) {
+      _available = false;
+    }
+    
     if (!_available) {
       notifyListeners();
       return;
