@@ -63,6 +63,12 @@ change gates, approve images, or mark items below as done).
 - No new dependencies, no scope inventions, no fake/dead UI controls.
 - Free sample must never regress to placeholder content once real content lands.
 
+## D. Decisions
+- 2026-06-11 (owner, delegated in writing): quality bar = best-in-class paid app.
+  Style fork resolved as **Option A** — all fable images regenerate to the locked
+  soft-anime style; cartoon set rejected for shipping. Calibration-first pipeline:
+  2 test images → auditor pre-screen → full batch only after style match.
+
 ## D. Audit log
 | # | Date | Commits audited | Verdict | Notes |
 |---|------|-----------------|---------|-------|
