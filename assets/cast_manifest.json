@@ -1,23 +1,86 @@
 {
-  "boy": { "approved": true, "notes": "Sample character" },
-  "bula": { "approved": false, "notes": "Elephant" },
-  "chiku": { "approved": false, "notes": "Mouse" },
-  "turtle": { "approved": false, "notes": "Turtle" },
-  "mouse": { "approved": false, "notes": "Mouse" },
-  "deer": { "approved": false, "notes": "Deer" },
-  "crow": { "approved": false, "notes": "Crow" },
-  "chanda_jackal": { "approved": false, "notes": "Jackal" },
-  "forest_animals": { "approved": false, "notes": "Forest Animals" },
-  "rakta": { "approved": false, "notes": "Monkey" },
-  "karala": { "approved": false, "notes": "Crocodile" },
-  "orangefish": { "approved": false, "notes": "Orange Fish" },
-  "bluefish": { "approved": false, "notes": "Blue Fish" },
-  "yellowfish": { "approved": false, "notes": "Yellow Fish" },
-  "dev": { "approved": false, "notes": "Boy" },
-  "dron_donkey": { "approved": false, "notes": "Donkey" },
-  "jackal_friend": { "approved": false, "notes": "Jackal Friend" },
-  "naduka": { "approved": false, "notes": "Merchant Naduka" },
-  "lakshman": { "approved": false, "notes": "Friend Lakshman" },
-  "leader_quail": { "approved": false, "notes": "Leader Quail" },
-  "flock_quail": { "approved": false, "notes": "Flock Quail" }
+  "dev": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "dron_donkey": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "jackal_friend": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "bhasuraka": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "chatur": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "chanda": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "mira": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "orangefish": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "bluefish": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "yellowfish": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "leader_quail": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "flock_quail": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "rakta": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "karala": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "bula": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "chiku": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "naduka": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "lakshman": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "kambu": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "goose": {
+    "approved": false,
+    "notes": "Pending review"
+  },
+  "boy": {
+    "approved": true,
+    "notes": "2 images in /review_queue/ are PENDING formal human review and must be re-confirmed before any store build"
+  }
 }

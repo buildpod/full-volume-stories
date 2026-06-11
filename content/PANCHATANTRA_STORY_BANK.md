@@ -12,8 +12,8 @@ locked style block, per-scene prompts, review checklist, cast manifest).
 | # | Title | Moral / learningGoal | Cast (one-off) | Child-safety note |
 |---|-------|----------------------|----------------|-------------------|
 | ✅ | **The Elephants and the Mice** | Even the smallest friend can help the greatest; kindness returns | Bula (elephant), Chiku (mouse) | Built. No harm to anyone. |
-| 1 | **The Foolish Lion and the Clever Rabbit** | Quick thinking beats brute strength; stay calm | Lion, little Rabbit | Lion is *tricked by his own reflection* into a well — show him splashing safely & humbled, never drowning. |
-| 2 | **The Talkative Tortoise** | Think before you speak; listen to good advice | Tortoise, two Geese | Original: tortoise falls and dies. **Soften:** he lands in a soft pond, embarrassed but fine. |
+| ✅ | **The Foolish Lion and the Clever Rabbit** | Quick thinking beats brute strength; stay calm | Lion, little Rabbit | Built. Lion is *tricked by his own reflection* into a well — show him splashing safely & humbled, never drowning. |
+| ✅ | **The Talkative Tortoise** | Think before you speak; listen to good advice | Tortoise, two Geese | Built. Original: tortoise falls and dies. **Soften:** he lands in a soft pond, embarrassed but fine. |
 | ✅ | **The Blue Jackal** | Be yourself; honesty over pretending | Jackal, forest animals | Built. Jackal falls in a dye vat, pretends to be king, is found out. Gentle comedy, no punishment beyond losing pretense. |
 | ✅ | **The Monkey and the Crocodile** | Cleverness and presence of mind; choose true friends | Monkey, Crocodile | Built. Original has a betrayal/heart plot. **Soften:** crocodile is tricked by a "I left my heart in the tree" joke; both part ways safely. |
 | ✅ | **The Three Fish** | Act in time; don't put off what matters | Three fish (Plan-Ahead, Quick-Wit, Fate) | Built. Two clever fish escape the net; keep all safe — focus on foresight, not death. |
