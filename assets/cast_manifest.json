@@ -9,7 +9,9 @@
   },
   "boy": {
     "approved": true,
-    "notes": "Sample story; 2 images in /review_queue/ PENDING formal human review - re-confirm before any store build"
+    "notes": "Formally reviewed 2026-06-11: auditor pre-screen PASS (locked style, calm, no text, clean anatomy, 1024x1024); owner approval delegated in writing",
+    "reviewedBy": "Vineet (delegated) + Claude pre-screen",
+    "reviewedDate": "2026-06-11"
   },
   "bula": {
     "approved": false,
