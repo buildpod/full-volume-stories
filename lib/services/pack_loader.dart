@@ -16,10 +16,16 @@ Future<StoryPack> loadPack(String assetPath, Map<String, bool> castApproval) asy
   return pack;
 }
 
-Future<List<StoryPack>> loadAllPacks(Map<String, bool> castApproval) async {
+Future<List<String>> _bundledAssetPaths() async {
   final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
-  
-  final packPaths = manifest.listAssets()
+  return manifest.listAssets();
+}
+
+Future<List<StoryPack>> loadAllPacks(
+  Map<String, bool> castApproval, {
+  Future<List<String>> Function() listAssetPaths = _bundledAssetPaths,
+}) async {
+  final packPaths = (await listAssetPaths())
       .where((path) => path.startsWith('assets/packs/') && path.endsWith('.json'))
       .toList();
       
