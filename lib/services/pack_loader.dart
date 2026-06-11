@@ -17,10 +17,9 @@ Future<StoryPack> loadPack(String assetPath, Map<String, bool> castApproval) asy
 }
 
 Future<List<StoryPack>> loadAllPacks(Map<String, bool> castApproval) async {
-  final manifestContent = await rootBundle.loadString('AssetManifest.json');
-  final Map<String, dynamic> manifestMap = jsonDecode(manifestContent);
+  final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
   
-  final packPaths = manifestMap.keys
+  final packPaths = manifest.listAssets()
       .where((path) => path.startsWith('assets/packs/') && path.endsWith('.json'))
       .toList();
       
