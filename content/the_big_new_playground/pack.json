@@ -1,0 +1,71 @@
+{
+  "id": "pack_playground",
+  "sku": "sku_playground_001",
+  "title": "The Big New Playground",
+  "mode": "neurodivergent",
+  "template": "firstThen",
+  "lowArousal": true,
+  "stories": [
+    {
+      "id": "playground_01",
+      "title": "The Big New Playground",
+      "learningGoal": "Preparing to visit a new place, noticing safe things, and asking for a break if it feels too big.",
+      "voiceKeywords": [
+        "playground",
+        "new",
+        "break",
+        "safe",
+        "swing"
+      ],
+      "pages": [
+        {
+          "text": "This is Sam. Sam is going to a brand new playground.",
+          "imageAsset": "assets/packs/images/sam_01_getting_ready.png"
+        },
+        {
+          "text": "First, they arrive at the playground. It is very big.",
+          "imageAsset": "assets/packs/images/sam_02_arrive.png"
+        },
+        {
+          "text": "Sam feels butterflies in their tummy. Everything is new.",
+          "imageAsset": "assets/packs/images/sam_03_feeling_unsure.png"
+        },
+        {
+          "text": "It is okay to feel unsure in a new place.",
+          "imageAsset": "assets/packs/images/sam_04_okay_to_feel.png"
+        },
+        {
+          "text": "First, Sam finds one thing that looks safe and familiar.",
+          "imageAsset": "assets/packs/images/sam_05_finding_swing.png"
+        },
+        {
+          "text": "It is a quiet blue swing at the edge of the park.",
+          "imageAsset": "assets/packs/images/sam_06_blue_swing.png"
+        },
+        {
+          "text": "Then, Sam asks for a short break to sit on the swing.",
+          "imageAsset": "assets/packs/images/sam_07_taking_break.png"
+        },
+        {
+          "text": "The break helps. Now Sam feels ready to play.",
+          "imageAsset": "assets/packs/images/sam_08_ready_to_play.png"
+        }
+      ],
+      "castIds": [
+        "sam"
+      ],
+      "copingCards": [
+        {
+          "id": "card_ask_break",
+          "title": "Ask for a break",
+          "steps": [
+            "Notice if my body feels too fast or too big.",
+            "Find my grown-up.",
+            "Say 'I need a break please.'",
+            "Go to a quiet spot together until I feel calm."
+          ]
+        }
+      ]
+    }
+  ]
+}

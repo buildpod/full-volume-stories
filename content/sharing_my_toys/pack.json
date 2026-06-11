@@ -1,0 +1,73 @@
+{
+  "id": "pack_sharing",
+  "sku": "sku_sharing_001",
+  "title": "Sharing My Toys",
+  "mode": "neurodivergent",
+  "template": "firstThen",
+  "lowArousal": true,
+  "stories": [
+    {
+      "id": "sharing_01",
+      "title": "Sharing My Toys",
+      "learningGoal": "Learning to wait for a turn to play with a favorite toy, and using a timer to help the waiting feel easier.",
+      "voiceKeywords": [
+        "share",
+        "turn",
+        "timer",
+        "wait",
+        "play"
+      ],
+      "pages": [
+        {
+          "text": "This is Leo. Leo loves playing with his red train.",
+          "imageAsset": "assets/packs/images/leo_01_playing.png"
+        },
+        {
+          "text": "First, a friend asks for a turn with the train.",
+          "imageAsset": "assets/packs/images/leo_02_friend_asks.png"
+        },
+        {
+          "text": "Leo feels his hands squeeze tight. He wants to keep playing.",
+          "imageAsset": "assets/packs/images/leo_03_feeling_tight.png"
+        },
+        {
+          "text": "It is hard to wait. That is okay.",
+          "imageAsset": "assets/packs/images/leo_04_hard_to_wait.png"
+        },
+        {
+          "text": "First, we set a little visual timer.",
+          "imageAsset": "assets/packs/images/leo_05_timer.png"
+        },
+        {
+          "text": "Then, I count to five slowly while the friend plays.",
+          "imageAsset": "assets/packs/images/leo_06_counting.png"
+        },
+        {
+          "text": "The timer goes ding! It is Leo's turn again.",
+          "imageAsset": "assets/packs/images/leo_07_timer_done.png"
+        },
+        {
+          "text": "I did it. I shared and waited for my turn.",
+          "imageAsset": "assets/packs/images/leo_08_proud.png"
+        }
+      ],
+      "castIds": [
+        "leo",
+        "friend"
+      ],
+      "copingCards": [
+        {
+          "id": "card_count_five",
+          "title": "Count to five",
+          "steps": [
+            "Hold up one hand with all five fingers.",
+            "Put one finger down and say one.",
+            "Put the next finger down and say two.",
+            "Keep counting slowly until all fingers are down.",
+            "Say 'I am good at waiting!'"
+          ]
+        }
+      ]
+    }
+  ]
+}
