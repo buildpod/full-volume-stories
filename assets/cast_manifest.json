@@ -12,11 +12,11 @@
     "notes": "Pending review"
   },
   "bhasuraka": {
-    "approved": false,
+    "approved": true,
     "notes": "Pending review"
   },
   "chatur": {
-    "approved": false,
+    "approved": true,
     "notes": "Pending review"
   },
   "chanda": {
@@ -72,11 +72,11 @@
     "notes": "Pending review"
   },
   "kambu": {
-    "approved": false,
+    "approved": true,
     "notes": "Pending review"
   },
   "goose": {
-    "approved": false,
+    "approved": true,
     "notes": "Pending review"
   },
   "boy": {
