@@ -50,16 +50,20 @@
     "notes": "Used by the_wise_quail; awaiting human review of generated images"
   },
   "goose": {
-    "approved": false,
-    "notes": "PENDING: 7/8 images pass; tortoise_08 REJECTED (embedded text \"plop\") \u2014 regen required before approval."
+    "approved": true,
+    "notes": "APPROVED 2026-06-12 (owner-delegated, auditor pre-screen): 8/8 locked-style PASS after tortoise_08 regen (text removed). Safe fall + pond landing verified.",
+    "reviewedBy": "Vineet (delegated) + Claude pre-screen",
+    "reviewedDate": "2026-06-12"
   },
   "jackal_friend": {
     "approved": false,
     "notes": "Used by the_musical_donkey; awaiting human review of generated images"
   },
   "kambu": {
-    "approved": false,
-    "notes": "PENDING: 7/8 images pass; tortoise_08 REJECTED (embedded text \"plop\") \u2014 regen required before approval."
+    "approved": true,
+    "notes": "APPROVED 2026-06-12 (owner-delegated, auditor pre-screen): 8/8 locked-style PASS after tortoise_08 regen (text removed). Safe fall + pond landing verified.",
+    "reviewedBy": "Vineet (delegated) + Claude pre-screen",
+    "reviewedDate": "2026-06-12"
   },
   "karala": {
     "approved": false,
