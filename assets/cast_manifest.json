@@ -22,8 +22,10 @@
     "reviewedDate": "2026-06-11"
   },
   "chanda": {
-    "approved": false,
-    "notes": "Used by the_blue_jackal; awaiting human review of generated images"
+    "approved": true,
+    "notes": "APPROVED 2026-06-12 (owner-delegated, auditor pre-screen): 8/8 PASS after jackal_02 regen (now fully tan mid-fall). Locked style, no text, village people-free.",
+    "reviewedBy": "Vineet (delegated) + Claude pre-screen",
+    "reviewedDate": "2026-06-12"
   },
   "chatur": {
     "approved": true,
@@ -66,8 +68,10 @@
     "reviewedDate": "2026-06-12"
   },
   "karala": {
-    "approved": false,
-    "notes": "Used by the_monkey_and_the_crocodile; awaiting human review of generated images"
+    "approved": true,
+    "notes": "APPROVED 2026-06-12 (owner-delegated, auditor pre-screen): goofy-friendly crocodile, never menacing; monkey_05 tension tender not scary.",
+    "reviewedBy": "Vineet (delegated) + Claude pre-screen",
+    "reviewedDate": "2026-06-12"
   },
   "lakshman": {
     "approved": false,
@@ -92,8 +96,10 @@
     "notes": "Used by the_three_fish; awaiting human review of generated images"
   },
   "rakta": {
-    "approved": false,
-    "notes": "Used by the_monkey_and_the_crocodile; awaiting human review of generated images"
+    "approved": true,
+    "notes": "APPROVED 2026-06-12 (owner-delegated, auditor pre-screen): consistent macaque, locked style.",
+    "reviewedBy": "Vineet (delegated) + Claude pre-screen",
+    "reviewedDate": "2026-06-12"
   },
   "yellowfish": {
     "approved": false,

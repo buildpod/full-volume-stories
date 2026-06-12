@@ -1,0 +1,61 @@
+{
+  "id": "pack_monkeycroc",
+  "mode": "general",
+  "sku": "sku_monkeycroc_001",
+  "stories": [
+    {
+      "id": "story_monkeycroc_01",
+      "mode": "general",
+      "template": "narrative",
+      "title": {
+        "en": "The Monkey and the Crocodile"
+      },
+      "pages": [
+        {
+          "text": "Rakta the monkey lived in a tall, sweet rose-apple tree.",
+          "imageAsset": "assets/packs/images/monkey_01_tree.png",
+          "copingCardId": null
+        },
+        {
+          "text": "He shared his sweet apples with Karala, the friendly crocodile.",
+          "imageAsset": "assets/packs/images/monkey_02_sharing.png",
+          "copingCardId": null
+        },
+        {
+          "text": "One day, Karala said, 'My family wants to meet you! Come across the river!'",
+          "imageAsset": "assets/packs/images/monkey_03_invite.png",
+          "copingCardId": null
+        },
+        {
+          "text": "Rakta hopped onto the crocodile's wide, bumpy back.",
+          "imageAsset": "assets/packs/images/monkey_04_riding.png",
+          "copingCardId": null
+        },
+        {
+          "text": "But the river was wide, and Rakta felt a little worried.",
+          "imageAsset": "assets/packs/images/monkey_05_worried.png",
+          "copingCardId": null
+        },
+        {
+          "text": "He thought quickly. 'Oh no, I left my best apples in the tree!' he said.",
+          "imageAsset": "assets/packs/images/monkey_06_clever.png",
+          "copingCardId": null
+        },
+        {
+          "text": "The silly crocodile swam all the way back to the shore.",
+          "imageAsset": "assets/packs/images/monkey_07_swimming_back.png",
+          "copingCardId": null
+        },
+        {
+          "text": "Rakta jumped up safely, waving goodbye to his silly friend.",
+          "imageAsset": "assets/packs/images/monkey_08_safe.png",
+          "copingCardId": null
+        }
+      ],
+      "voiceKeywords": ["monkey", "crocodile", "apple", "tree", "river", "swim"],
+      "castIds": ["rakta", "karala"],
+      "lowArousal": false,
+      "learningGoal": "Presence of mind and quick thinking can get you out of tricky situations."
+    }
+  ]
+}
