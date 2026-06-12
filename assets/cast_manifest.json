@@ -1,7 +1,9 @@
 {
   "bhasuraka": {
-    "approved": false,
-    "notes": "Used by the_foolish_lion_and_the_clever_rabbit; awaiting human review of generated images"
+    "approved": true,
+    "notes": "APPROVED 2026-06-11 (owner-delegated, auditor pre-screen): 8/8 locked-style PASS, lion_02 fang-free comedic, well pages calm/safe.",
+    "reviewedBy": "Vineet (delegated) + Claude pre-screen",
+    "reviewedDate": "2026-06-11"
   },
   "bluefish": {
     "approved": false,
@@ -24,8 +26,10 @@
     "notes": "Used by the_blue_jackal; awaiting human review of generated images"
   },
   "chatur": {
-    "approved": false,
-    "notes": "Used by the_foolish_lion_and_the_clever_rabbit; awaiting human review of generated images"
+    "approved": true,
+    "notes": "APPROVED 2026-06-11 (owner-delegated, auditor pre-screen): consistent dusty-brown hare across pages.",
+    "reviewedBy": "Vineet (delegated) + Claude pre-screen",
+    "reviewedDate": "2026-06-11"
   },
   "chiku": {
     "approved": true,
@@ -47,7 +51,7 @@
   },
   "goose": {
     "approved": false,
-    "notes": "Used by the_talkative_tortoise; awaiting human review of generated images"
+    "notes": "PENDING: 7/8 images pass; tortoise_08 REJECTED (embedded text \"plop\") \u2014 regen required before approval."
   },
   "jackal_friend": {
     "approved": false,
@@ -55,7 +59,7 @@
   },
   "kambu": {
     "approved": false,
-    "notes": "Used by the_talkative_tortoise; awaiting human review of generated images"
+    "notes": "PENDING: 7/8 images pass; tortoise_08 REJECTED (embedded text \"plop\") \u2014 regen required before approval."
   },
   "karala": {
     "approved": false,
